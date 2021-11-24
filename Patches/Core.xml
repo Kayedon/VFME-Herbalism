@@ -34,10 +34,16 @@
 			</li>
 			<li Class="PatchOperationAdd"> <!-- Now that the above is done, give it a harvestedThingDef -->
 				<success>Always</success> <!-- Ideology Bonsai Tree -->
-				<xpath>/Defs/ThingDef/plant[purpose[text()="Beauty"]][not(harvestTag="Wood")]</xpath>
+				<xpath>/Defs/ThingDef/plant[purpose[text()="Beauty"]][not(harvestTag="Wood")][not(harvestedThingDef)]</xpath>
+				<value>
+					<harvestedThingDef>VFME_FlowerBundle</harvestedThingDef>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd"> <!-- Now that the above is done, give it a harvestedThingDef -->
+				<success>Always</success> <!-- Ideology Bonsai Tree -->
+				<xpath>/Defs/ThingDef/plant[purpose[text()="Beauty"]][not(harvestTag="Wood")][not(harvestYield)]</xpath>
 				<value>
 					<harvestYield>1</harvestYield>
-					<harvestedThingDef>VFME_FlowerBundle</harvestedThingDef>
 				</value>
 			</li>
 		</operations>

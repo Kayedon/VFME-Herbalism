@@ -150,7 +150,7 @@
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
-						<setMax>0.3</setMax>
+						<setMax>0.35</setMax> <!-- Should prevent smokeleaf from killing -->
 					</li>
 					<li>
 						<capacity>Moving</capacity>
