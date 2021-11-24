@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="VFME_TonicThing">
+		<defName>VFME_TonicHealth</defName>
+		<label>tonic of health</label>
+		<description>A blend of healroot and flowers, ground and boiled to create a tonic of health. Nauseating, but blocks malaria, sleeping sickness, plague. Must be taken every three days to remain effective.\n\nThis drug only prevents new infections. It does not cure existing infections - even those that are not yet discovered.</description>
+		<descriptionHyperlinks>
+			<HediffDef>VFME_HealthHigh</HediffDef>
+		</descriptionHyperlinks>
+		<graphicData>
+			<texPath>Things/Item/Drug/Tonic/VFME_TonicHealth</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>24</MarketValue>
+			<WorkToMake>400</WorkToMake>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>VFME_HealthHigh</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<costList>
+			<VFME_FlowerBundle>1</VFME_FlowerBundle>
+			<MedicineHerbal>2</MedicineHerbal>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+				<overdoseSeverityOffset>0.08~0.14</overdoseSeverityOffset>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<HediffDef ParentName="VFME_TonicHediff">
+		<defName>VFME_HealthHigh</defName>
+		<hediffClass>Hediff_High</hediffClass>
+		<label>tonic of health</label>
+		<description>Tonic of health-induced immunity to certain illnesses. This only blocks new infections; it does nothing for those who are already infected, even if their infection is dormant.\n\nIt is quite nauseating, however.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.30</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<vomitMtbDays>0.67</vomitMtbDays>
+				<makeImmuneTo>
+					<li>Malaria</li>
+					<li>SleepingSickness</li>
+					<li>Plague</li>
+				</makeImmuneTo>
+				<capMods>
+					<li>
+						<capacity>Metabolism</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+	<RecipeDef ParentName="VFME_TonicRecipe">
+		<defName>VFME_TonicHealth</defName>
+		<label>make tonic of health</label>
+		<description>Make tonic of health.</description>
+		<jobString>Making tonic of health.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineHerbal</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>VFME_FlowerBundle</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<products>
+			<VFME_TonicHealth>1</VFME_TonicHealth>
+		</products>
+	</RecipeDef>
+	<RecipeDef ParentName="VFME_TonicRecipe">
+		<defName>VFME_TonicHealthBulk</defName>
+		<label>make tonic of health x4</label>
+		<description>Make tonic of health x4.</description>
+		<jobString>Making tonic of health x4.</jobString>
+		<workAmount>1600</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineHerbal</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>VFME_FlowerBundle</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<products>
+			<VFME_TonicHealth>4</VFME_TonicHealth>
+		</products>
+	</RecipeDef>
+</Defs>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- Elixir of Purity  -->
+	<ThingDef ParentName="VFME_ElixirThing">
+		<defName>VFME_ElixirPurity</defName>
+		<label>elixir of purity</label>
+		<description>A blend of healroot, smokeleaf, and flowers, ground and boiled to create an elixir of purity. Consumptions put users into a deep slumber, from which nothing can wake. The exact connection between the ingredients and the effects is unknown, but it's useful for treating hysteria and infections.\n\nMany users complain of feeling ill for a while after waking up. Non-habit forming.</description>
+		<descriptionHyperlinks>
+		  <HediffDef>VFME_PurityHigh</HediffDef>
+		</descriptionHyperlinks>
+		<graphicData>
+			<texPath>Things/Item/Drug/Elixir/VFME_ElixirPurity</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>36</MarketValue>
+		</statBases>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>VFME_PurityHigh</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<costList>
+			<VFME_FlowerBundle>1</VFME_FlowerBundle>
+			<SmokeleafLeaves>6</SmokeleafLeaves>
+			<MedicineHerbal>2</MedicineHerbal>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>200</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+	<HediffDef ParentName="VFME_ElixirHediff">
+		<defName>VFME_PurityHigh</defName>
+		<label>drank elixir of purity</label>
+		<labelNoun>a purity dose</labelNoun>
+		<description>A dose of an elixir of purity. Very quickly lulls users into a deep slumber, from which nothing can wake. It isn't known why, but consuming this elixir massively aids in healing from infections and diseases. Causes long-term vomiting after waking, though.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.5</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>nauseous</label>
+				<painFactor>1.3</painFactor>
+				<vomitMtbDays>0.1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.8</setMax>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.2</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.2</offset>
+					</li>
+					<li>
+						<capacity>Metabolism</capacity>
+						<offset>-0.4</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.1</minSeverity>
+				<label>groggy</label>
+				<painFactor>0.70</painFactor>
+				<vomitMtbDays>0.3</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.6</setMax>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.3</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.3</offset>
+					</li>
+					<li>
+						<capacity>Metabolism</capacity>
+						<offset>-0.6</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.4</minSeverity>
+				<label>asleep</label>
+				<painFactor>0.0</painFactor>
+				<statOffsets>
+					<ImmunityGainSpeed>0.30</ImmunityGainSpeed>
+				</statOffsets>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.01</setMax>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.9</minSeverity>
+				<label>lethargic</label>
+				<painFactor>0.8</painFactor>
+				<restFallFactor>10</restFallFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.9</setMax>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Metabolism</capacity>
+						<offset>-0.2</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+	<ThoughtDef>
+		<defName>VFME_PurityHigh</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>VFME_PurityHigh</hediff>
+		<validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<label>nauseous</label>
+				<description>I can't keep anything down! What was in that elixir?</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+			<li>
+				<label>groggy</label>
+				<description>Feels like I slept for quadrums. I feel sick.</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>asleep</label>
+				<description>Zzz...</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+			<li>
+				<label>lethargic</label>
+				<description>That elixir just drained all the energy out of me. I need to go lie down.</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

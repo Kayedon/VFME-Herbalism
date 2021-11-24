@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ============= Herbalist ============= -->
+
+	<WorkGiverDef>
+		<defName>DoBillsHerbalMedicine</defName>
+		<label>craft herbal remedies</label>
+		<giverClass>WorkGiver_DoBill</giverClass>
+		<workType>Crafting</workType>
+		<priorityInType>92</priorityInType>
+		<fixedBillGiverDefs>
+			<li>VFME_TableHerbalist</li>
+		</fixedBillGiverDefs>
+		<verb>working</verb>
+		<gerund>working at</gerund>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+		<prioritizeSustains>true</prioritizeSustains>
+	</WorkGiverDef>
+
+</Defs>

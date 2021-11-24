@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- Elixir of Rush  -->
+	<ThingDef ParentName="VFME_ElixirThing">
+		<defName>VFME_ElixirRush</defName>
+		<label>elixir of rush</label>
+		<description>A potent blend of psychite, smokeleaf, and flowers, ground and boiled to create an elixir of rush. Consumption puts users in a state of heightened awareness, increasing their combat prowess. However, as the elixir wears off, a wave of fatigue takes over.\n\nMildly addictive, and the initial high increases a users chance of violence.</description>
+		<descriptionHyperlinks>
+			<HediffDef>VFME_RushHigh</HediffDef>
+			<HediffDef>VFME_RushAddiction</HediffDef>
+		</descriptionHyperlinks>
+		<graphicData>
+			<texPath>Things/Item/Drug/Elixir/VFME_ElixirRush</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>28</MarketValue>
+		</statBases>
+		<ingestible>
+			<joyKind>Chemical</joyKind>
+			<joy>0.40</joy>
+			<drugCategory>Hard</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>VFME_RushHigh</hediffDef>
+					<severity>1.0</severity>
+					<toleranceChemical>VFME_Rush</toleranceChemical>
+				</li>
+				<li Class="IngestionOutcomeDoer_OffsetNeed">
+					<need>Rest</need>
+					<offset>+0.2</offset>
+					<toleranceChemical>VFME_Rush</toleranceChemical>
+				</li>
+				<!-- <li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>VFME_RushTolerance</hediffDef>
+					<severity>0.1</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li> We're not giving this a tolerance this way given the high addiction chance -->
+			</outcomeDoers>
+		</ingestible>
+		<costList>
+			<VFME_FlowerBundle>1</VFME_FlowerBundle>
+			<PsychoidLeaves>6</PsychoidLeaves>
+			<SmokeleafLeaves>6</SmokeleafLeaves>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>VFME_Rush</chemical>
+				<addictiveness>0.02</addictiveness>
+				<!-- <minToleranceToAddict>0.05</minToleranceToAddict> -->
+				<isCombatEnhancingDrug>true</isCombatEnhancingDrug>
+				<existingAddictionSeverityOffset>0.20</existingAddictionSeverityOffset>
+				<needLevelOffset>0.9</needLevelOffset>
+				<listOrder>200</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+	<HediffDef ParentName="VFME_ElixirHediff">
+		<defName>VFME_RushHigh</defName>
+		<label>high on elixir of rush</label>
+		<labelNoun>a rush high</labelNoun>
+		<description>A rush high. This two-stage high initially greatly enhances combat-related abilities and increases aggressiveness. Once the high begins wearing off, a feeling of sedation sets in, thoroughly relaxing the user.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1.0</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>sedation</label>
+				<restFallFactor>1.4</restFallFactor>
+				<socialFightChanceFactor>0</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.6</setMax>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<setMax>0.5</setMax>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<setMax>0.5</setMax>
+					</li>
+					<li>
+						<capacity>Talking</capacity>
+						<setMax>0.5</setMax>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<setMax>0.3</setMax>
+					</li>
+					<li>
+						<capacity>Hearing</capacity>
+						<setMax>0.1</setMax>
+					</li>
+				</capMods>
+			</li>
+			<li>
+			    <minSeverity>0.5</minSeverity>
+				<label>concentration</label>
+                <painFactor>0.5</painFactor>
+				<restFallFactor>0.6</restFallFactor>
+				<socialFightChanceFactor>1.5</socialFightChanceFactor>
+                <capMods>
+				<li>
+                    <capacity>Consciousness</capacity>
+                    <offset>0.10</offset>
+                </li>
+				<li>
+					<capacity>Manipulation</capacity>
+					<offset>0.25</offset>
+				</li>
+                <li>
+                    <capacity>Sight</capacity>
+                    <offset>0.25</offset>
+                </li>
+                <li>
+                    <capacity>Moving</capacity>
+                    <offset>0.25</offset>
+                </li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+    <ThoughtDef>
+		<defName>VFME_RushHigh</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>VFME_RushHigh</hediff>
+		<validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<label>sedation</label>
+				<description>I could go for a nap...</description>
+				<baseMoodEffect>10</baseMoodEffect>
+			</li>
+			<li>
+				<label>rush concentration</label>
+				<description>Bring it on, I am ready to fight!</description>
+				<baseMoodEffect>20</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	<ChemicalDef>
+		<defName>VFME_Rush</defName>
+		<label>elixir of rush</label>
+		<addictionHediff>VFME_RushAddiction</addictionHediff>
+	</ChemicalDef>
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_VFME_Rush</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>elixir of rush</label>
+		<description>Because of an addiction to rush, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+        <!-- <fallPerDay>0.333</fallPerDay> -->
+        <listPriority>45</listPriority>
+	</NeedDef>
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>VFME_RushTolerance</defName>
+		<label>elixir of rush tolerance</label>
+		<description>A built-up tolerance to rush. The more severe this tolerance is, the more rush it takes to get the same effect.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.05</severityPerDay>
+			</li>
+				<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>VFME_Rush</chemical>
+			</li>
+		</comps>
+		<hediffGivers>
+			<li Class="HediffGiver_RandomDrugEffect">
+				<hediff>ChemicalDamageModerate</hediff>
+				<severityToMtbDaysCurve>
+					<points>
+						<li>(0.45, 99999)</li>
+						<li>(0.5, 240)</li>
+						<li>(1, 120)</li>
+					</points>
+				</severityToMtbDaysCurve>
+				<partsToAffect>
+					<li>Brain</li>
+				</partsToAffect>
+			</li>
+		</hediffGivers>
+	</HediffDef>
+	<!-- Addiction -->
+	<HediffDef ParentName="AddictionBase">
+		<defName>VFME_RushAddiction</defName>
+		<label>elixir of rush addiction</label>
+		<description>A chemical addiction to rush. Long-term presence of rush has caused neurological adaptations at the cellular level, so the brain can no longer function properly without the drug.
+		\nWithout regular doses of rush, withdrawal symptoms will begin. However, extended abstinence will force the brain to adapt back to its normal state, resolving the addiction.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_VFME_Rush</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.1</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<painFactor>2.5</painFactor>
+				<restFallFactorOffset>0.4</restFallFactorOffset>
+				<hungerRateFactorOffset>0.6</hungerRateFactorOffset>
+				<socialFightChanceFactor>2.0</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.20</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.30</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.30</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.20</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugExtreme</mentalState>
+						<mtbDays>40</mtbDays>
+					</li>
+					<li>
+						<mentalState>Wander_Psychotic</mentalState>
+						<mtbDays>10</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+	<ThoughtDef>
+		<defName>VFME_RushWithdrawal</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>VFME_RushAddiction</hediff>
+		<validWhileDespawned>true</validWhileDespawned>
+		<stages>
+				<li>
+					<visible>false</visible>
+				</li>
+				<li>
+					<label>rush withdrawal</label>
+					<description>This feeling is aggravating! I feel so dull, I could punch someone!</description>
+					<baseMoodEffect>-15</baseMoodEffect>
+				</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

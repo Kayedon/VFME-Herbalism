@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="HatBase">
+		<defName>VFME_Apparel_BlossomCrown</defName>
+		<label>blossom crown</label>
+		<description>A beautiful wreath of flowers. Improves social impact, but does nothing for protection and deteriorates rapidly.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/BlossomCrown/BlossomCrown</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>10</MaxHitPoints>
+			<Mass>0.10</Mass>
+			<MarketValue>80</MarketValue>
+			<DeteriorationRate>1</DeteriorationRate>
+			<Beauty>2</Beauty>
+		</statBases>
+		<equippedStatOffsets>
+			<PawnBeauty>+1</PawnBeauty>
+			<SocialImpact>0.10</SocialImpact>
+		</equippedStatOffsets>
+		<apparel>
+			<careIfWornByCorpse>false</careIfWornByCorpse>
+			<careIfDamaged>false</careIfDamaged>
+			<wearPerDay>1</wearPerDay>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/BlossomCrown/BlossomCrown</wornGraphicPath>
+			<hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>Neolithic</li>
+				<li MayRequire="ludeon.rimworld.royalty">RoyalTier2</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Worker</li>
+			</defaultOutfitTags>
+		</apparel>
+		<tradeTags>
+			<li>VFME_Apparel_BlossomCrown</li>
+		</tradeTags>
+		<tradeability>Sellable</tradeability>
+	</ThingDef>
+	
+  <RecipeDef>
+    <defName>VFME_Make_BlossomCrown</defName>
+    <label>make blossom crown</label>
+    <description>Make a blossom crown.</description>
+    <jobString>Making blossom crown.</jobString>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <effectWorking>Tailor</effectWorking>
+    <soundWorking>Recipe_Tailor</soundWorking>
+    <workAmount>1000</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>VFME_FlowerBundle</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>VFME_FlowerBundle</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <VFME_Apparel_BlossomCrown>1</VFME_Apparel_BlossomCrown>
+    </products>
+    <skillRequirements>
+      <Crafting>2</Crafting>
+    </skillRequirements>
+    <workSkill>Crafting</workSkill>
+	<recipeUsers Inherit="False">
+		<li>CraftingSpot</li>
+		<li>HandTailoringBench</li>
+	</recipeUsers>
+  </RecipeDef>
+</Defs>

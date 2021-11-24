@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch> <!-- Everything for Vanilla -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/RecipeDef[defName="Make_Kibble"]/ingredients/li[2]/filter/thingDefs</xpath>
+				<value><li>VFME_FlowerBundle</li></value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<success>Always</success>
+				<xpath>/Defs/RecipeDef[workSpeedStat[text()="DrugCookingSpeed"]]/recipeUsers[not(li[text()="ElectricStove"] or li[text()="Brewery"])]</xpath>
+				<value><li>VFME_TableHerbalist</li></value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef/recipeMaker[workSpeedStat="DrugCookingSpeed"]/recipeUsers[not(li[text()="ElectricStove"] or li[text()="Brewery"])]</xpath>
+				<value><li>VFME_TableHerbalist</li></value>
+			</li>
+		<!-- ========== Harvested ThingDefs_Plants ========== --> <!-- We don't want to be uprooting our flowers, just trimming off the goods [Kayedon] - I actually have second thoughts on that... Let's nuke this for now? -->
+			<!-- <li Class="PatchOperationAdd"> 
+				<xpath>/Defs/ThingDef/plant[purpose[text()="Beauty"]][not(harvestTag="Wood")][not(harvestAfterGrowth)]</xpath>
+				<value><harvestAfterGrowth>0.01</harvestAfterGrowth></value>
+			</li> -->
+			<li Class="PatchOperationAdd"> <!-- Let us select the plants... -->
+				<xpath>/Defs/ThingDef[plant/purpose[text()="Beauty"]][not(plant/harvestTag="Wood")][not(selectable)]</xpath>
+				<value><selectable>true</selectable></value>
+			</li>
+			<li Class="PatchOperationAdd"> <!-- Let us select multiple at once -->
+				<xpath>/Defs/ThingDef[plant/purpose[text()="Beauty"]][not(plant/harvestTag="Wood")][not(neverMultiSelect)]</xpath>
+				<value><neverMultiSelect>false</neverMultiSelect></value>
+			</li>
+			<li Class="PatchOperationAdd"> <!-- Let's us harvest ones that are missing the harvestTag, whatever the hell it does -->
+				<xpath>/Defs/ThingDef/plant[purpose[text()="Beauty"]][not(harvestTag="Wood")][not(harvestTag)]</xpath>
+				<value><harvestTag>Standard</harvestTag></value>
+			</li>
+			<li Class="PatchOperationAdd"> <!-- Now that the above is done, give it a harvestedThingDef -->
+				<success>Always</success> <!-- Ideology Bonsai Tree -->
+				<xpath>/Defs/ThingDef/plant[purpose[text()="Beauty"]][not(harvestTag="Wood")]</xpath>
+				<value>
+					<harvestYield>1</harvestYield>
+					<harvestedThingDef>VFME_FlowerBundle</harvestedThingDef>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+</Patch>
