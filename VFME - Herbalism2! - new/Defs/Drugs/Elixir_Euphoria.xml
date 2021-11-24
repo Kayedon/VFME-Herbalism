@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- Elixir of Euphoria  -->
+	<ThingDef ParentName="VFME_ElixirThing">
+		<defName>VFME_ElixirEuphoria</defName>
+		<label>elixir of euphoria</label>
+		<description>A blend of psychite, ambrosia, and flowers, ground and boiled to create an elixir of euphoria. Consumption puts users into a state of euphoria, bringing back those on the edge.\n\nBeing incredibly addictive, many cultures have outlawed this elixir, though the relative ease of production proves this to be difficult to enforce.</description>
+		<descriptionHyperlinks>
+			<HediffDef>VFME_EuphoriaHigh</HediffDef>
+			<HediffDef>VFME_EuphoriaAddiction</HediffDef>
+		</descriptionHyperlinks>
+		<graphicData>
+			<texPath>Things/Item/Drug/Elixir/VFME_ElixirEuphoria</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>48</MarketValue>
+		</statBases>
+		<ingestible>
+			<joyKind>Chemical</joyKind>
+			<joy>0.80</joy>
+			<drugCategory>Hard</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>VFME_EuphoriaHigh</hediffDef>
+					<severity>1.0</severity>
+					<toleranceChemical>VFME_Euphoria</toleranceChemical>
+				</li>
+				<!-- <li Class="IngestionOutcomeDoer_OffsetNeed">
+					<need>Rest</need>
+					<offset>-0.2</offset>
+					<toleranceChemical>VFME_Euphoria</toleranceChemical>
+				</li> -->
+				<!-- <li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>VFME_EuphoriaTolerance</hediffDef>
+					<severity>0.045</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li> We're not giving this a tolerance this way given the high addiction chance -->
+			</outcomeDoers>
+		</ingestible>
+		<costList>
+			<VFME_FlowerBundle>1</VFME_FlowerBundle>
+			<PsychoidLeaves>6</PsychoidLeaves>
+			<Ambrosia>2</Ambrosia>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<chemical>VFME_Euphoria</chemical>
+				<addictiveness>0.024</addictiveness>
+				<existingAddictionSeverityOffset>0.20</existingAddictionSeverityOffset>
+				<needLevelOffset>0.9</needLevelOffset>
+				<listOrder>200</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+	<HediffDef ParentName="VFME_ElixirHediff">
+		<defName>VFME_EuphoriaHigh</defName>
+		<label>high on elixir of euphoria</label>
+		<labelNoun>an euphoric high</labelNoun>
+		<description>An euphoric high. Puts the user into a deep euphoric haze, suppressing the need for food or sleep, and losing all connection with reality until the elixir begins wearing off. This feeling can be incredibly addictive.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.5</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>euphoric tingle</label>
+				<painFactor>0.9</painFactor>
+				<restFallFactor>0.9</restFallFactor>
+				<hungerRateFactorOffset>-0.1</hungerRateFactorOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.8</setMax>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<setMax>0.7</setMax>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<postFactor>0.7</postFactor>
+					</li>
+					<li>
+						<capacity>Talking</capacity>
+						<postFactor>0.7</postFactor>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<postFactor>0.7</postFactor>
+					</li>
+					<li>
+						<capacity>Hearing</capacity>
+						<postFactor>0.7</postFactor>
+					</li>
+				</capMods>
+				<mentalStateGivers> <!-- Will probably never happen, needs testing -->
+					<li>
+						<mentalState>Wander_Psychotic</mentalState>
+						<mtbDays>0.9</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+			<li>
+				<minSeverity>0.25</minSeverity>
+				<label>euphoric haze</label>
+				<painFactor>0.5</painFactor>
+				<restFallFactor>0.6</restFallFactor>
+				<hungerRateFactorOffset>-0.4</hungerRateFactorOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.6</setMax>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<setMax>0.5</setMax>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<postFactor>0.4</postFactor>
+					</li>
+					<li>
+						<capacity>Talking</capacity>
+						<postFactor>0.4</postFactor>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<postFactor>0.4</postFactor>
+					</li>
+					<li>
+						<capacity>Hearing</capacity>
+						<postFactor>0.4</postFactor>
+					</li>
+				</capMods>
+				<mentalStateGivers> <!-- Will probably never happen, needs testing -->
+					<li>
+						<mentalState>Wander_Psychotic</mentalState>
+						<mtbDays>0.5</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+			<li>
+				<minSeverity>0.5</minSeverity>
+				<label>euphoric high</label>
+				<painFactor>0</painFactor>
+				<restFallFactor>0.1</restFallFactor> <!-- Buffed section -->
+				<hungerRateFactorOffset>-0.9</hungerRateFactorOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.3</setMax>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<setMax>0.2</setMax>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<setMax>0</setMax>
+					</li>
+					<li>
+						<capacity>Talking</capacity>
+						<setMax>0</setMax>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<setMax>0</setMax>
+					</li>
+					<li>
+						<capacity>Hearing</capacity>
+						<setMax>0</setMax>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Wander_Psychotic</mentalState>
+						<mtbDays>0.05</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+	<ThoughtDef>
+		<defName>VFME_EuphoriaHigh</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>VFME_EuphoriaHigh</hediff>
+		<validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<label>euphoric tingle</label>
+				<description>Everything feels a little dull, and that's fine by me.</description>
+				<baseMoodEffect>10</baseMoodEffect>
+			</li>
+			<li>
+				<label>euphoric haze</label>
+				<description>It feels like I'm floating above the ground.</description>
+				<baseMoodEffect>30</baseMoodEffect>
+			</li>
+			<li>
+				<label>euphoric high</label>
+				<description>I feel nothing. Can't think...</description>
+				<baseMoodEffect>60</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+<!-- Euphoria addiction -->
+	<ChemicalDef>
+		<defName>VFME_Euphoria</defName>
+		<label>euphoria</label>
+		<addictionHediff>VFME_EuphoriaAddiction</addictionHediff>
+	</ChemicalDef>
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_VFME_Euphoria</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>euphoria</label>
+		<description>Because of an addiction to euphoria, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+		<!-- <fallPerDay>0.333</fallPerDay> -->
+		<listPriority>55</listPriority>
+	</NeedDef>
+	<HediffDef ParentName="AddictionBase">
+		<defName>VFME_EuphoriaAddiction</defName>
+		<label>euphoria addiction</label>
+		<description>A chemical addiction to euphoria. Long-term presence of euphoria has caused neurological adaptations at the cellular level, so the brain can no longer function properly without the drug.
+		\nWithout regular doses of euphoria, withdrawal symptoms will begin. However, extended abstinence will force the brain to adapt back to its normal state, resolving the addiction.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>Chemical_VFME_Euphoria</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.05</severityPerDay>
+				<showDaysToRecover>true</showDaysToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<painFactor>2</painFactor>
+				<restFallFactorOffset>-0.5</restFallFactorOffset>
+				<hungerRateFactorOffset>-0.5</hungerRateFactorOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.6</setMax>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.50</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_DrugExtreme</mentalState>
+						<mtbDays>40</mtbDays>
+					</li>
+					<li>
+						<mentalState>Wander_Psychotic</mentalState>
+						<mtbDays>10</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+	<ThoughtDef>
+		<defName>VFME_EuphoriaWithdrawal</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>VFME_EuphoriaAddiction</hediff>
+		<validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<visible>false</visible>
+			</li>
+			<li>
+				<label>euphoria withdrawal</label>
+				<description>I feel everything, just let me be numb again!</description>
+				<baseMoodEffect>-30</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>VFME_Euphoria</defName>
+		<label>geuphoria tolerance</label>
+		<description>A built-up tolerance to euphoria. The more severe this tolerance is, the more euphoria it takes to get the same effect.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.015</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>VFME_Euphoria</chemical>
+			</li>
+		</comps>
+		<hediffGivers>
+			<li Class="HediffGiver_RandomDrugEffect">
+			<hediff>ChemicalDamageModerate</hediff>
+			<severityToMtbDaysCurve>
+				<points>
+					<li>(0.45, 99999)</li>
+					<li>(0.5, 360)</li>
+					<li>(1, 120)</li>
+				</points>
+			</severityToMtbDaysCurve>
+			<partsToAffect>
+				<li>Brain</li>
+			</partsToAffect>
+			</li>
+		</hediffGivers>
+	</HediffDef>
+</Defs>

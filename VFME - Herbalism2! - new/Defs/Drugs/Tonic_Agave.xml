@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="VFME_TonicThing">
+		<defName>VFME_TonicAgave</defName>
+		<label>tonic of immunity</label>
+		<description>A blend of healroot, agave, and flowers, ground and boiled to create a tonic of immunity. This tonic bolsters the immune system, but dulls the brain.</description>
+		<descriptionHyperlinks>
+			<HediffDef>VFME_ImmunityHigh</HediffDef>
+		</descriptionHyperlinks>
+		<graphicData>
+			<texPath>Things/Item/Drug/Tonic/VFME_TonicAgave</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>32</MarketValue>
+			<WorkToMake>400</WorkToMake>
+		</statBases>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>VFME_ImmunityHigh</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+				<overdoseSeverityOffset>0.08~0.14</overdoseSeverityOffset>
+			</li>
+		</comps>
+	</ThingDef>
+	<HediffDef ParentName="VFME_TonicHediff">
+		<defName>VFME_ImmunityHigh</defName>
+		<hediffClass>Hediff_High</hediffClass>
+		<label>tonic of immunity</label>
+		<description>A tonic of immunity bolsters the immune system, but dulls the brain.</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.50</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<ImmunityGainSpeed>0.20</ImmunityGainSpeed>
+				</statOffsets>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.2</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+		<RecipeDef ParentName="VFME_TonicRecipe">
+		<defName>VFME_TonicAgave</defName>
+		<label>make tonic of immunity</label>
+		<description>Make tonic of immunity.</description>
+		<jobString>Making tonic of immunity.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>RawAgave</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineHerbal</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>VFME_FlowerBundle</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<products>
+			<VFME_TonicAgave>1</VFME_TonicAgave>
+		</products>
+	</RecipeDef>
+		<RecipeDef ParentName="VFME_TonicRecipe">
+		<defName>VFME_TonicAgaveBulk</defName>
+		<label>make tonic of immunity x4</label>
+		<description>Make tonic of immunity x4.</description>
+		<jobString>Making tonic of immunity x4.</jobString>
+		<workAmount>1600</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>RawAgave</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MedicineHerbal</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>VFME_FlowerBundle</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<products>
+			<VFME_TonicAgave>4</VFME_TonicAgave>
+		</products>
+	</RecipeDef>
+</Defs>

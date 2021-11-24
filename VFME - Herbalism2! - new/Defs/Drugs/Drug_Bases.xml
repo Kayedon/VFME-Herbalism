@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- Elixir Base -->
+	<ThingDef Name="VFME_ElixirThing" ParentName="MakeableDrugBase" Abstract="True">
+		<rotatable>false</rotatable>
+		<techLevel>Neolithic</techLevel>
+		<tickerType>Rare</tickerType>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.75</drawSize>
+		</graphicData>
+		<statBases>
+			<DeteriorationRate>0.5</DeteriorationRate>
+			<Mass>0.5</Mass>
+			<Flammability>0.5</Flammability>
+			<WorkToMake>600</WorkToMake> 
+		</statBases>
+		<ingestible>
+			<foodType>Processed, Fluid</foodType>
+			<baseIngestTicks>80</baseIngestTicks>
+			<ingestSound>Ingest_Drink</ingestSound>
+			<ingestHoldOffsetStanding>
+				<northDefault>
+					<offset>(0.18,0,0)</offset>
+				</northDefault>
+			</ingestHoldOffsetStanding>
+			<ingestCommandString>Drink {0}</ingestCommandString>
+			<ingestReportString>Drinking {0}.</ingestReportString>
+			<useEatingSpeedStat>false</useEatingSpeedStat>
+			<chairSearchRadius>0</chairSearchRadius>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>Herbalism</researchPrerequisite>
+			<recipeUsers>
+				<li>VFME_TableHerbalist</li>
+				<li>DrugLab</li>
+			</recipeUsers>
+		</recipeMaker>
+	</ThingDef>
+	
+	<HediffDef Name="VFME_ElixirHediff" Abstract="True">
+		<hediffClass>Hediff_High</hediffClass>
+		<defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+	</HediffDef>
+	
+	<!-- Tonic Base -->
+	
+	<ThingDef Name="VFME_TonicThing" ParentName="DrugBase" Abstract="True">
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.75</drawSize>
+		</graphicData>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<rotatable>false</rotatable>
+		<statBases>
+			<Mass>0.1</Mass>
+		</statBases>
+		<techLevel>Neolithic</techLevel>
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<foodType>Processed, Fluid</foodType>
+			<baseIngestTicks>180</baseIngestTicks>
+			<ingestSound>Ingest_Drink</ingestSound>
+			<ingestHoldOffsetStanding>
+				<northDefault>
+					<offset>(0.18,0,0)</offset>
+				</northDefault>
+			</ingestHoldOffsetStanding>
+			<ingestCommandString>Drink {0}</ingestCommandString>
+			<ingestReportString>Drinking {0}.</ingestReportString>
+			<useEatingSpeedStat>false</useEatingSpeedStat>
+			<chairSearchRadius>25</chairSearchRadius>
+		</ingestible>
+	</ThingDef>
+	
+	<RecipeDef Name="VFME_TonicRecipe" Abstract="True">
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<workSkill>Intellectual</workSkill>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_CookMeal</soundWorking>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<recipeUsers>
+			<li>VFME_TableHerbalist</li>
+			<li>DrugLab</li>
+		</recipeUsers>
+		<researchPrerequisite>Herbalism</researchPrerequisite>
+	</RecipeDef>
+	
+	<HediffDef Name="VFME_TonicHediff" Abstract="True">
+		<defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+	</HediffDef>
+
+</Defs>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch> <!-- [Kayedon] - I probably should've done this whole thing as a LoadFolders.xml thing, but... lazy, and this was already mostly done -->
+	<Operation Class="PatchOperationFindMod">
+		<mods><li>Royalty</li></mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>
+				<ThingDef ParentName="VFMEPlantmatter">
+					<defName>VFME_AnimaFibers</defName>
+					<label>anima fibers</label>
+					<description>Fibers harvested from anima tree.</description>
+					<graphicData>
+						<texPath>Things/Item/Resource/VFME_AnimaFibers</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<drawSize>0.75</drawSize>
+					</graphicData>
+				</ThingDef>
+			</value>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Plant_TreeAnima"]/plant</xpath>
+			<value>
+				
+			</value>
+			</li>
+			<li Class="PatchOperationAdd"> <!-- AnimaFiber can be harvested from anima tree -->
+			<xpath>/Defs/ThingDef[defName="Plant_TreeAnima"]/plant</xpath>
+			<value>
+				<harvestTag>Standard</harvestTag>
+				<harvestedThingDef>VFME_AnimaFibers</harvestedThingDef>
+				<harvestYield>8</harvestYield>
+				<harvestAfterGrowth>0.3</harvestAfterGrowth>
+			</value>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>
+				<ThingDef ParentName="VFME_ElixirThing">
+					<defName>VFME_AnimaElixir</defName>
+					<label>elixir of anima</label>
+					<description>A blend of anima fibers and flowers, ground and boiled to create an elixir of anima. Consumption provides a temporary but powerful increase in psychic abilities, however as the effect wears off, a painful headache takes hold.\n\nNon-habit forming.</description>
+					<descriptionHyperlinks>
+						<HediffDef>VFME_AnimaHigh</HediffDef>
+					</descriptionHyperlinks>
+					<graphicData>
+						<texPath>Things/Item/Drug/Elixir/VFME_AnimaElixir</texPath>
+					</graphicData>
+					<statBases>
+						<MarketValue>26</MarketValue>
+					</statBases>
+					<ingestible>
+						<joyKind>Chemical</joyKind>
+						<joy>0.20</joy>
+						<drugCategory>Hard</drugCategory>
+						<outcomeDoers>
+							<li Class="IngestionOutcomeDoer_GiveHediff">
+								<hediffDef>VFME_AnimaHigh</hediffDef>
+								<severity>1</severity>
+							</li>
+							<li Class="IngestionOutcomeDoer_OffsetPsyfocus">
+							  <offset>0.4</offset>
+							</li>
+						</outcomeDoers>
+					</ingestible>
+					<costList>
+						<VFME_FlowerBundle>1</VFME_FlowerBundle>
+						<VFME_AnimaFibers>4</VFME_AnimaFibers>
+					</costList>
+					<comps>
+						<li Class="CompProperties_Drug">
+							<listOrder>200</listOrder>
+						</li>
+					</comps>
+				</ThingDef>
+			</value>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>
+				<HediffDef ParentName="VFME_ElixirHediff">
+					<defName>VFME_AnimaHigh</defName>
+					<label>drank elixir of anima</label>
+					<labelNoun>an anima dose</labelNoun>
+					<description>A dose of an elixir of anima. Powerful in the hands of a psycaster, causes a powerful increase to psychic sensitivity. However, an intense headache afflicts the user as the elixir wears off, causing vomit-inducing pain and virtually nullifying their psychic sensitivity.</description>
+					<comps>
+						<li Class="HediffCompProperties_SeverityPerDay">
+							<severityPerDay>-1.0</severityPerDay>
+							<showHoursToRecover>true</showHoursToRecover>
+						</li>
+					</comps>
+					<stages>
+						<li>
+							<label>anima headache</label>
+							<restFallFactor>1.4</restFallFactor>
+							<vomitMtbDays>0.4</vomitMtbDays>
+							<painOffset>0.3</painOffset>
+							<statOffsets>
+								<PsychicSensitivity>-0.9</PsychicSensitivity>
+							</statOffsets>
+						</li>
+						<li>
+							<label>anima focus</label>
+							<minSeverity>0.3</minSeverity>
+							<statOffsets>
+								<PsychicSensitivity>0.5</PsychicSensitivity>
+							</statOffsets>
+						</li>
+					</stages>
+				</HediffDef>
+			</value>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>
+				<ThoughtDef>
+					<defName>VFME_AnimaHigh</defName>
+					<workerClass>ThoughtWorker_Hediff</workerClass>
+					<hediff>VFME_AnimaHigh</hediff>
+					<validWhileDespawned>true</validWhileDespawned>
+					<stages>
+						<li>
+							<label>anima headache</label>
+							<description>It feels like my brain was split in two!</description>
+							<baseMoodEffect>-10</baseMoodEffect>
+						</li>
+						<li>
+							<label>anima focus</label>
+							<description>I feel infinitely powerful!</description>
+							<baseMoodEffect>+10</baseMoodEffect>
+						</li>
+					</stages>
+				</ThoughtDef>
+			</value>
+			</li>
+		</operations>
+		</match>
+	</Operation>
+</Patch>

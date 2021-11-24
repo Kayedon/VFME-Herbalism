@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods><li>Vanilla Factions Expanded - Insectoids</li></mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>
+				<ThingDef ParentName="VFME_TonicThing">
+					<defName>VFME_RoyalTonic</defName>
+					<label>tonic of royal jelly</label>
+					<description>A blend of royal insect jelly, herbal medicine, and flowers, mixed together to create a tonic of royal jelly. Provides a powerful immediate boost to immunity gain, and a slight increase to immunity gain speed. Perfect for treating near-lethal infections, but doesn't taste as good as plain royal insect jelly.</description>
+					<descriptionHyperlinks>
+						<HediffDef>VFEI_RoyalJellyHigh</HediffDef>
+						<HediffDef>VFEI_RoyalJellyTolerance</HediffDef>
+						<HediffDef>VFEI_RoyalJellyAddiction</HediffDef>
+					</descriptionHyperlinks>
+					<graphicData>
+						<texPath>Things/Item/Drug/Tonic/VFME_RoyalTonic</texPath>
+					</graphicData>
+					<statBases>
+						<MarketValue>22</MarketValue> <!-- Not Final -->
+						<Nutrition>0.05</Nutrition>
+						<WorkToMake>400</WorkToMake>
+					</statBases>
+					<ingestible>
+						<joy>0.10</joy> <!-- slightly reduced since herbal medicine and flowers are gonna be bitter AF -->
+						<joyKind>Gluttonous</joyKind>
+						<tasteThought>VFME_DrankRoyalTonic</tasteThought>
+						<canAutoSelectAsFoodForCaravan>false</canAutoSelectAsFoodForCaravan>
+						<outcomeDoers>
+							<li Class="IngestionOutcomeDoer_GiveHediff"> <!-- Exactly the same as normal royal jelly except the hediff -->
+								<hediffDef>VFME_RoyalTonicHigh</hediffDef>
+								<severity>1.00</severity>
+								<toleranceChemical>VFEI_RoyalJellyChemical</toleranceChemical>
+							</li>
+							<li Class="IngestionOutcomeDoer_GiveHediff"> <!-- Exactly the same as normal royal jelly -->
+								<hediffDef>VFEI_RoyalJellyTolerance</hediffDef>
+								<severity>0.032</severity>
+								<divideByBodySize>true</divideByBodySize>
+							</li>
+							<li Class="VFEI.IngestionOutcomeDoer_Immunity">
+								<percent>8</percent> <!-- 1.6x as strong (vs 5) -->
+							</li>
+						</outcomeDoers>
+					</ingestible>
+					<comps>
+						<li Class="CompProperties_Drug"> <!-- Exactly the same as normal royal jelly -->
+							<chemical>VFEI_RoyalJellyChemical</chemical>
+							<addictiveness>0.035</addictiveness>
+							<existingAddictionSeverityOffset>0.2</existingAddictionSeverityOffset>
+							<needLevelOffset>0.9</needLevelOffset>
+							<isCombatEnhancingDrug>false</isCombatEnhancingDrug>
+							<minToleranceToAddict>0.15</minToleranceToAddict>
+							<listOrder>100</listOrder>
+						</li>
+					</comps>
+				</ThingDef>
+			</value>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>
+			<HediffDef ParentName="VFME_TonicHediff">
+				<defName>VFME_RoyalTonicHigh</defName>
+				<hediffClass>Hediff_High</hediffClass>
+				<label>tonic of royal jelly</label>
+				<description>A tonic of royal jelly provides an powerful immediate boost to immunity gain, and a passive increase to immunity gain speed.</description>
+				<comps>
+					<li Class="HediffCompProperties_SeverityPerDay">
+						<severityPerDay>-0.75</severityPerDay>
+						<showHoursToRecover>true</showHoursToRecover>
+					</li>
+				</comps>
+				<stages>
+					<li>
+						<statOffsets>
+							<ImmunityGainSpeed>0.15</ImmunityGainSpeed>
+						</statOffsets>
+						<capMods>
+							<li>
+								<capacity>Moving</capacity>
+								<offset>0.05</offset>
+							</li>
+						</capMods>
+					</li>
+				</stages>
+			</HediffDef>
+			</value>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>
+				<ThoughtDef>
+					<defName>VFME_DrankRoyalTonic</defName>
+					<stages>
+						<li>
+							<label>drank tonic of royal jelly</label>
+							<description>As delicious as royal insect jelly, that tonic was a bit bitter.</description>
+							<baseMoodEffect>+1</baseMoodEffect>
+						</li>
+					</stages>
+				</ThoughtDef>
+			</value>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>
+				<RecipeDef ParentName="VFME_TonicRecipe">
+					<defName>VFME_RoyalTonic</defName>
+					<label>make tonic of royal jelly</label>
+					<description>Make tonic of royal jelly.</description>
+					<jobString>Making tonic of royal jelly.</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>VFEI_RoyalInsectJelly</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>MedicineHerbal</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>VFME_FlowerBundle</li>
+								</thingDefs>
+							</filter>
+							<count>1</count>
+						</li>
+					</ingredients>
+					<products>
+						<VFME_RoyalTonic>1</VFME_RoyalTonic>
+					</products>
+				</RecipeDef>
+			</value>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>
+				<RecipeDef ParentName="VFME_TonicRecipe">
+					<defName>VFME_RoyalTonicBulk</defName>
+					<label>make tonic of royal jelly x4</label>
+					<description>Make tonic of royal jelly x4.</description>
+					<jobString>Making tonic of royal jelly x4.</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>VFEI_RoyalInsectJelly</li>
+								</thingDefs>
+							</filter>
+							<count>8</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>MedicineHerbal</li>
+								</thingDefs>
+							</filter>
+							<count>8</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>VFME_FlowerBundle</li>
+								</thingDefs>
+							</filter>
+							<count>4</count>
+						</li>
+					</ingredients>
+					<products>
+						<VFME_RoyalTonic>4</VFME_RoyalTonic>
+					</products>
+				</RecipeDef>
+			</value>
+			</li>
+		</operations>
+	</match>
+	</Operation>
+</Patch>
