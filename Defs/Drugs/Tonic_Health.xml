@@ -47,7 +47,7 @@
 		</comps>
 		<stages>
 			<li>
-				<vomitMtbDays>0.67</vomitMtbDays>
+				<vomitMtbDays>1.33</vomitMtbDays>
 				<makeImmuneTo>
 					<li>Malaria</li>
 					<li>SleepingSickness</li>

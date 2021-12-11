@@ -45,7 +45,7 @@
 		</comps>
 		<stages>
 			<li>
-				<painOffset>0.2</painOffset>
+				<painOffset>0.1</painOffset>
 			    <hungerRateFactorOffset>-0.8</hungerRateFactorOffset>
                 <capMods>
 					<li>

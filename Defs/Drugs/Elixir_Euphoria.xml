@@ -97,7 +97,7 @@
 				</capMods>
 				<mentalStateGivers> <!-- Will probably never happen, needs testing -->
 					<li>
-						<mentalState>Wander_Psychotic</mentalState>
+						<mentalState>Wander_OwnRoom</mentalState>
 						<mtbDays>0.9</mtbDays>
 					</li>
 				</mentalStateGivers>
@@ -106,12 +106,12 @@
 				<minSeverity>0.25</minSeverity>
 				<label>euphoric haze</label>
 				<painFactor>0.5</painFactor>
-				<restFallFactor>0.6</restFallFactor>
-				<hungerRateFactorOffset>-0.4</hungerRateFactorOffset>
+				<restFallFactor>0.7</restFallFactor>
+				<hungerRateFactorOffset>-0.30</hungerRateFactorOffset>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
-						<setMax>0.6</setMax>
+						<setMax>0.65</setMax>
 					</li>
 					<li>
 						<capacity>Moving</capacity>
@@ -136,7 +136,7 @@
 				</capMods>
 				<mentalStateGivers> <!-- Will probably never happen, needs testing -->
 					<li>
-						<mentalState>Wander_Psychotic</mentalState>
+						<mentalState>Wander_OwnRoom</mentalState>
 						<mtbDays>0.5</mtbDays>
 					</li>
 				</mentalStateGivers>
@@ -145,37 +145,37 @@
 				<minSeverity>0.5</minSeverity>
 				<label>euphoric high</label>
 				<painFactor>0</painFactor>
-				<restFallFactor>0.1</restFallFactor> <!-- Buffed section -->
-				<hungerRateFactorOffset>-0.9</hungerRateFactorOffset>
+				<restFallFactor>0.5</restFallFactor> <!-- Buffed section -->
+				<hungerRateFactorOffset>-0.5</hungerRateFactorOffset>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
-						<setMax>0.35</setMax> <!-- Should prevent smokeleaf from killing -->
+						<setMax>0.5</setMax> <!-- Should prevent smokeleaf from killing -->
 					</li>
 					<li>
 						<capacity>Moving</capacity>
-						<setMax>0.2</setMax>
+						<setMax>0.35</setMax>
 					</li>
 					<li>
 						<capacity>Manipulation</capacity>
-						<setMax>0</setMax>
+						<setMax>0.2</setMax>
 					</li>
 					<li>
 						<capacity>Talking</capacity>
-						<setMax>0</setMax>
+						<setMax>0.2</setMax>
 					</li>
 					<li>
 						<capacity>Sight</capacity>
-						<setMax>0</setMax>
+						<setMax>0.2</setMax>
 					</li>
 					<li>
 						<capacity>Hearing</capacity>
-						<setMax>0</setMax>
+						<setMax>0.2</setMax>
 					</li>
 				</capMods>
 				<mentalStateGivers>
 					<li>
-						<mentalState>Wander_Psychotic</mentalState>
+						<mentalState>Wander_OwnRoom</mentalState>
 						<mtbDays>0.05</mtbDays>
 					</li>
 				</mentalStateGivers>
@@ -196,12 +196,12 @@
 			<li>
 				<label>euphoric haze</label>
 				<description>It feels like I'm floating above the ground.</description>
-				<baseMoodEffect>30</baseMoodEffect>
+				<baseMoodEffect>25</baseMoodEffect>
 			</li>
 			<li>
 				<label>euphoric high</label>
 				<description>I feel nothing. Can't think...</description>
-				<baseMoodEffect>60</baseMoodEffect>
+				<baseMoodEffect>40</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
